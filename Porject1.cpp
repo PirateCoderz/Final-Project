@@ -44,18 +44,16 @@ int main()
     bool found = false;
     int total_marks, start;
 
-
     // Ask user for roll number
     cout << "\n\tEnter Roll Number of the student: ";
     cin >> roll;
-
     cout << "\n\n";
+
 
     // #####################################################################
     // #####################################################################
     // Search for student with the given roll number.
     // And Print their details on the Console Window.
-
     for(int i = 0; i < 20; i++)
     {
         if(students[i].roll_no == roll)
@@ -73,8 +71,17 @@ int main()
             cout << "\t\tAccounting: \t" << students[i].marks[3] << endl;
             cout << "\t\tApplied Physics:" << students[i].marks[4] << endl;
             cout << "\t\tIslamiat: \t" << students[i].marks[5] << endl;
+
             break;
         }
+    }
+
+
+    // #####################################################################
+    // Display error message if roll number not found
+    if(!found)
+    {
+        cout << "\nError: Student with roll number " << roll << " not found." << endl;
     }
 
     // #####################################################################
@@ -95,6 +102,33 @@ int main()
         }
     }
 
+    // #####################################################################
+    // This code will calculate the students max marks and minimum marks
+    int topper = 0;
+    int sabkeMarks[20];
+    int new_marks;
+    for(int i = 0; i < 20; i++)
+    {
+        new_marks = students[i].marks[0] + students[i].marks[1] + students[i].marks[2]
+                    + students[i].marks[3] + students[i].marks[4] + students[i].marks[5];
+        sabkeMarks[i] = new_marks;
+        if (topper < new_marks) {
+                topper = new_marks;
+        }
+    }
+
+    cout  << "\t\tThe Topper has got marks: " << topper << endl;
+
+    cout << "\t========================================================================" << endl << endl;
+
+
+    for(int i = 0; i < 20; i++)
+    {
+        cout << sabkeMarks[i] << "\t";
+    }
+    cout << endl;
+    cout << "\t========================================================================" << endl;
+
     // The percentage of given numbers is declared and assigned here......
 
     float percent = total_marks/6;
@@ -105,39 +139,25 @@ int main()
 
     // #####################################################################
     // The grading system is defined here...
-    if (percent >0 && percent <=100)
-    {
-        if (percent > 80 && percent <= 100)
-        {
+    if (percent >0 && percent <=100) {
+        if (percent > 80 && percent <= 100) {
             cout << "\tYour CGPA is 4 " << endl;
         }
-        else if (percent > 75 && percent <= 80)
-        {
+        else if (percent > 75 && percent <= 80) {
             cout << "\tYour CGPA IS 3.5" << endl;
         }
-        else if (percent > 70 && percent <= 75)
-        {
+        else if (percent > 70 && percent <= 75) {
             cout << "\tYour CGPA is 3" << endl;
         }
-        else if (percent > 65 && percent <= 70)
-        {
+        else if (percent > 65 && percent <= 70) {
             cout << "\tYour CGPA is 2.5" << endl;
         }
-        else if (percent > 60 && percent <= 65)
-        {
+        else if (percent > 60 && percent <= 65) {
             cout << "\tYour CGPA is 2" << endl;
         }
-        else
-        {
+        else {
             cout << "\tYour CGPA is below 2,You have failed.";
         }
-    }
-
-
-    // Display error message if roll number not found
-    if(!found)
-    {
-        cout << "\nError: Student with roll number " << roll << " not found." << endl;
     }
 
 
